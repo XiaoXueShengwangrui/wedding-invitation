@@ -5,6 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="format-detection" content="telephone=no,email=no" />
+
+  <!-- 微信分享优化 -->
+  <meta property="og:title" content="王睿 & 陆献晢 婚礼请柬" />
+  <meta property="og:description" content="以爱之名，共赴一场浪漫盛宴。诚邀您见证我们的幸福时刻。" />
+  <meta property="og:image" content="./img1.jpg" />
+  <meta property="og:url" content="https://xiaoxueshengwangrui.github.io/wedding-invitation/" />
+  <meta property="og:type" content="website" />
+
+  <!-- 其他社交媒体分享 -->
+  <meta name="description" content="王睿 & 陆献晢 婚礼请柬 - 以爱之名，共赴一场浪漫盛宴" />
+  <meta name="keywords" content="婚礼请柬,王睿,陆献晢,wedding invitation" />
+
   <title>王睿 & 陆献晢 wedding invitation</title>
   <style>
     :root{
@@ -508,6 +520,40 @@
         next.scrollIntoView({behavior:'smooth'});
       }
     },{passive:true});
+
+    // 微信分享优化
+    (function() {
+      // 检测是否在微信浏览器中
+      const isWeChat = /MicroMessenger/i.test(navigator.userAgent);
+
+      if (isWeChat) {
+        // 在微信中时，尝试自动播放音乐（微信允许用户交互后的自动播放）
+        document.addEventListener('touchstart', function() {
+          if (bgm.paused) {
+            autoPlayMusic();
+          }
+        }, { once: true });
+
+        // 优化微信分享显示
+        const shareData = {
+          title: '王睿 & 陆献晢 婚礼请柬',
+          desc: '以爱之名，共赴一场浪漫盛宴。诚邀您见证我们的幸福时刻。',
+          link: window.location.href,
+          imgUrl: window.location.origin + '/wedding-invitation/img1.jpg'
+        };
+
+        // 如果页面加载完成还没有播放音乐，显示提示
+        setTimeout(() => {
+          if (bgm.paused) {
+            const tip = document.querySelector('.music-tip');
+            if (tip) {
+              tip.textContent = '点击播放婚礼音乐';
+              tip.style.display = 'block';
+            }
+          }
+        }, 3000);
+      }
+    })();
   </script>
 </body>
 </html>
